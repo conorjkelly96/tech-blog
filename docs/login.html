@@ -16,6 +16,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="./styles/styles.css" />
   </head>
   <body>
     <header>
@@ -44,9 +45,22 @@
       </nav>
     </header>
     <main>
-      <div>
-        <h2 class="subtitle">Welcome Back to OpenSource</h2>
-        <div class="field">
+      <div class="login-form">
+        <h2
+          class="
+            subtitle
+            is-flex-direction-row is-flex-wrap-wrap
+            has-text-centered
+          "
+        >
+          Welcome Back to OpenSource
+        </h2>
+        <div
+          class="
+            field
+            is-flex-direction-row is-flex-wrap-wrap is-justify-content-center
+          "
+        >
           <p class="control has-icons-left has-icons-right">
             <input class="input" type="email" placeholder="Email" />
             <span class="icon is-small is-left">
@@ -65,11 +79,25 @@
             </span>
           </p>
         </div>
-        <div class="buttons">
+        <div
+          class="
+            buttons
+            is-flex-direction-row is-flex-wrap-wrap is-justify-content-center
+          "
+        >
           <button class="button is-link">Log in</button>
         </div>
-        <div>
-          <p>Don't have a OpenSource Profile? <span>Sign Up</span></p>
+        <div
+          class="
+            is-flex-direction-row is-flex-wrap-wrap
+            has-text-centered
+            is-size-6
+          "
+        >
+          <p>
+            Don't have a OpenSource Profile?
+            <a class="sign-up" id="sign-up">Sign Up</a>
+          </p>
         </div>
       </div>
     </main>
