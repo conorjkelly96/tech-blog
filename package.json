@@ -1,0 +1,33 @@
+{
+  "name": "tech-blog",
+  "version": "1.0.0",
+  "description": "Creating a tech blog with HTML, CSS and JavaScript leveraging sequelize.js, handlebars.js, express.js &amp; mySQL.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "seed": "node db/seeds/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/conorjkelly96/tech-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/conorjkelly96/tech-blog/issues"
+  },
+  "homepage": "https://github.com/conorjkelly96/tech-blog#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "handlebars": "^4.7.7",
+    "mysql2": "^2.3.3",
+    "sequelize": "^7.0.0-alpha.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
