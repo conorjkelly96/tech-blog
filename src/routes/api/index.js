@@ -1,9 +1,11 @@
-// const { Router } = require("express");
+const { Router } = require("express");
 
-// const blogRoutes = require("./blog-routes");
+const blogRoutes = require("./blog");
+const commentRoutes = require("./comment");
 
-// const router = Router();
+const router = Router();
 
-// router.use("/blog-routes", blogRoutes);
+router.use("/blog", blogRoutes);
+router.use("/comment", commentRoutes);
 
-// module.exports = router;
+module.exports = router;
