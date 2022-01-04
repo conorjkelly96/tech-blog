@@ -13,6 +13,18 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    text: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    blog_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     connection,
