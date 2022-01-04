@@ -27,7 +27,7 @@ Comment.init(
     },
   },
   {
-    connection,
+    sequelize: connection,
     timestamps: false,
     freezeTableName: true,
     underscored: false,

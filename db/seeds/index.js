@@ -1,11 +1,11 @@
-const sequelize = require("../../src/config/connection");
+const connection = require("../../src/config/connection");
 
 const seedBlogs = require("./blog-seeds");
 const seedComments = require("./comment-seeds");
 const seedUsers = require("./user-seeds");
 
 const seedAll = async () => {
-  await sequelize.sync({ force: true });
+  await connection.sync({ force: true });
   console.log("\n----- DATABASE SYNCED -----\n");
 
   await seedUsers();
