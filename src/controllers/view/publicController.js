@@ -1,5 +1,5 @@
 const renderSignUp = (req, res) => {
-  res.render("signup");
+  res.render("sign-up");
 };
 
 const renderLogin = (req, res) => {
