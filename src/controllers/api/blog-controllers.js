@@ -47,7 +47,7 @@ const createBlog = async (req, res) => {
     const { blog } = req.body;
 
     if (blog) {
-      await Category.create({ blog });
+      await Blog.create({ blog });
       return res.json({ success: true, data: "Created Blog" });
     }
 
@@ -63,10 +63,43 @@ const createBlog = async (req, res) => {
 };
 
 // UPDATE blog post
-const updateBlogById = async (req, res) => {};
+const updateBlogById = async (req, res) => {
+  try {
+    const { blog } = req.body;
+
+    const { id } = req.params;
+
+    if (id && blog) {
+      await Blog.update(
+        { category_name: category_name },
+        { where: { id: id } }
+      );
+      return res.json({ success: true, data: `Updated Blog ${id}` });
+    }
+  } catch (error) {
+    logError("GET Blog", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to send response" });
+  }
+};
 
 // DELETE blog post
-const deleteBlogById = async (req, res) => {};
+const deleteBlogById = async (req, res) => {
+  try {
+    await Blog.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    return res.json({ success: true, data: "Deleted Blog" });
+  } catch (error) {
+    logError("DELETE Blog", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to send response" });
+  }
+};
 
 module.exports = {
   getAllBlogs,
