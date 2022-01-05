@@ -2,12 +2,12 @@ const { Blog, Comment, User } = require("../../models");
 
 const renderDashboard = async (req, res) => {
   try {
-    res.render("blog");
+    res.render("dashboard");
   } catch (error) {
     console.log(error.message);
     return res
       .status(500)
-      .json(`ERR: ${error.message} - failed to render Blog Post`);
+      .json(`ERR: ${error.message} - failed to render Dashboard`);
   }
 };
 

@@ -14,4 +14,7 @@ router.get("/create-blog", renderCreateBlog);
 router.get("/edit-post", renderEditBlog);
 router.get("/edit-comment", renderEditComment);
 
+// router.post("/sign-up", signup);
+// router.post("/login", login);
+
 module.exports = router;
