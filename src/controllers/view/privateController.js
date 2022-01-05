@@ -2,86 +2,43 @@ const { Blog, Comment, User } = require("../../models");
 
 const renderDashboard = async (req, res) => {
   try {
-    const { userId, firstName, lastName } = req.session;
-
-    const postData = await Blog.findAll({
-      where: { user_id: userId },
-      include: [{ model: User }, { model: Comment }],
-    });
-
-    const blogs = blogData.map((blog) => {
-      const newBlog = blog.get({ plain: true });
-
-      return newBlog;
-    });
-
-    return res.render("dashboard", {
-      layout: "dashboard",
-      firstName,
-      lastName,
-      blogs,
-    });
+    res.render("blog");
   } catch (error) {
     console.log(error.message);
     return res
       .status(500)
-      .json(`ERR: ${error.message} - failed to render Dashboard`);
+      .json(`ERR: ${error.message} - failed to render Blog Post`);
   }
 };
 
-const renderCreateBlog = (req, res) => {
+const renderCreateBlog = async (req, res) => {
   try {
-    const { firstName } = req.session;
-    res.render("create-blog", { layout: "dashboard", firstName });
+    return res.render("create-blog");
   } catch (error) {
     console.log(error.message);
     return res
       .status(500)
-      .json(`ERR: ${error.message} - failed to render Dashboard`);
+      .json(`ERR: ${error.message} - failed to render Create Blog`);
   }
 };
-
-const renderEditBlog = async (req, res) => {
+const renderEditBlog = (req, res) => {
   try {
-    const { firstName, userId } = req.session;
-    const { id } = req.params;
-
-    const data = await Blog.findOne({ where: { id, user_id: userId } });
-
-    if (!data) {
-      return res.redirect("/dashboard");
-    }
-
-    const blog = data.get({ plain: true });
-
-    res.render("edit-post", { layout: "dashboard", firstName, blog });
+    res.render("edit-blog");
   } catch (error) {
     console.log(error.message);
     return res
       .status(500)
-      .json(`ERR: ${error.message} - failed to render Dashboard`);
+      .json(`ERR: ${error.message} - failed to render Edit Blog`);
   }
 };
-
-const renderEditComment = async (req, res) => {
+const renderEditComment = (req, res) => {
   try {
-    const { firstName, userId } = req.session;
-    const { id } = req.params;
-
-    const data = await Comment.findOne({ where: { id, user_id: userId } });
-
-    if (!data) {
-      return res.redirect("/");
-    }
-
-    const comment = data.get({ plain: true });
-
-    res.render("edit-comment", { layout: "main", firstName, comment });
+    res.render("edit-comment");
   } catch (error) {
     console.log(error.message);
     return res
       .status(500)
-      .json(`ERR: ${error.message} - failed to render Dashboard`);
+      .json(`ERR: ${error.message} - failed to render Edit Comment`);
   }
 };
 
