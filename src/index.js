@@ -27,6 +27,9 @@ const app = express();
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
+app.get("/", (req, res) => {
+  res.render("main", { layout: "index" });
+});
 
 app.use(session(sessionOptions));
 app.use(express.static(path.join(__dirname, "../public")));
