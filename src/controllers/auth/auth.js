@@ -4,15 +4,7 @@ const { getPayloadWithValidFieldsOnly } = require("../../helpers/utils");
 const signup = async (req, res) => {
   try {
     const payload = getPayloadWithValidFieldsOnly(
-      [
-        "email",
-        "password",
-        "first_name",
-        "last_name",
-        "height",
-        "weight",
-        "age",
-      ],
+      ["email", "password"],
       req.body
     );
 
@@ -57,7 +49,7 @@ const login = async (req, res) => {
       });
     }
 
-    const validPassword = await user.checkPassword(payload.password);
+    const validPassword = await User.checkPassword(payload.password);
 
     if (!validPassword) {
       return res.status(401).json({
@@ -69,8 +61,6 @@ const login = async (req, res) => {
     const userInSession = {
       id: user.get("id"),
       email: user.get("email"),
-      firstName: user.get("first_name"),
-      lastName: user.get("last_name"),
     };
 
     req.session.save(() => {
