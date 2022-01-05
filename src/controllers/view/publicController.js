@@ -24,6 +24,9 @@ const renderLogin = (req, res) => {
 
 const renderHomepage = async (req, res) => {
   try {
+    const blogs = await Blog.findAll();
+    console.log(blogs);
+
     res.render("homepage");
   } catch (error) {
     console.log(error.message);
