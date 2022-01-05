@@ -44,7 +44,8 @@
       </nav>
     </header>
     <main>
-      <div class="login-form">
+
+      <div class="sign-up-form" id="#sign-up-form">
         <h2
           class="main-text subtitle is-flex-direction-row is-flex-wrap-wrap has-text-centered"
         >
@@ -55,7 +56,7 @@
           class="sign-up field is-flex-direction-row is-flex-wrap-wrap is-justify-content-center"
         >
           <p class="control has-icons-left has-icons-right">
-            <input class="input" type="email" placeholder="Email" />
+            <input class="input" type="email" placeholder="Email" id="email" />
             <span class="icon is-small is-left">
               <i class="fas fa-envelope"></i>
             </span>
@@ -64,40 +65,51 @@
             </span>
           </p>
         </div>
-        <div class="field">
-          <p class="control has-icons-left">
-            <input class="input" type="password" placeholder="Password" />
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
-        </div>
+
         <div class="field">
           <p class="control has-icons-left">
             <input
               class="input"
               type="password"
-              placeholder="Confirm Password"
+              placeholder="Password"
+              id="password"
             />
             <span class="icon is-small is-left">
               <i class="fas fa-lock"></i>
             </span>
           </p>
         </div>
+
+        <div class="field">
+          <p class="control has-icons-left">
+            <input
+              class="input"
+              type="password"
+              placeholder="Confirm Password"
+              id="confirm-password"
+            />
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
+        </div>
+
         <div
           class="buttons is-flex-direction-row is-flex-wrap-wrap is-justify-content-center"
         >
-          <button class="button is-link">Join OpenSource</button>
+          <input type="submit" class="button is-link" value="Join OpenSource" />
         </div>
+
         <div
           class="is-flex-direction-row is-flex-wrap-wrap has-text-centered is-size-6"
         >
           <p>
             Already have an OpenSource account?
-            <a class="sign-up" id="sign-up">Log in</a>
+            <a class="log-in" id="log-in">Log in</a>
           </p>
         </div>
       </div>
+
     </main>
     <footer class="footer">
       <div class="content has-text-centered">
@@ -110,5 +122,12 @@
         </p>
       </div>
     </footer>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="/js/index.js"></script>
   </body>
 </html>

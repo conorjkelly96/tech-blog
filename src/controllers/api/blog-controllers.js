@@ -47,7 +47,7 @@ const createBlog = async (req, res) => {
     const { blog } = req.body;
 
     if (blog) {
-      await Blog.create({ blog });
+      await Blog.create({ title, content, user_id });
       return res.json({ success: true, data: "Created Blog" });
     }
 
