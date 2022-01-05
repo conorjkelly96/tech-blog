@@ -70,10 +70,7 @@ const updateBlogById = async (req, res) => {
     const { id } = req.params;
 
     if (id && blog) {
-      await Blog.update(
-        { category_name: category_name },
-        { where: { id: id } }
-      );
+      await Blog.update({ blog: blog }, { where: { id: id } });
       return res.json({ success: true, data: `Updated Blog ${id}` });
     }
   } catch (error) {
