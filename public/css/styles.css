@@ -2,8 +2,8 @@
   background-color: #000000;
 } */
 
-.login-form {
-  margin: 80px;
+.login-form .sign-up {
+  margin: 1000px;
   padding: 40px;
   flex-direction: row;
   flex-wrap: wrap;
