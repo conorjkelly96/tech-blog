@@ -49,7 +49,7 @@ const login = async (req, res) => {
       });
     }
 
-    const validPassword = await User.checkPassword(payload.password);
+    const validPassword = await user.checkPassword(payload.password);
 
     if (!validPassword) {
       return res.status(401).json({
@@ -61,6 +61,8 @@ const login = async (req, res) => {
     const userInSession = {
       id: user.get("id"),
       email: user.get("email"),
+      firstName: user.get("first_name"),
+      lastName: user.get("last_name"),
     };
 
     req.session.save(() => {

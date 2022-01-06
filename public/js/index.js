@@ -1,6 +1,8 @@
 const loginForm = $("#login-form");
 const signUpForm = $("#sign-up-form");
 
+console.log(loginForm);
+
 const getErrorsSignUp = ({ email, username, password, confirmPassword }) => {
   const errors = {};
 
@@ -82,4 +84,35 @@ const handleSignUp = async (event) => {
   }
 };
 
+const handleLogin = async (event) => {
+  event.preventDefault();
+
+  const email = $("#email").val();
+  const password = $("#password").val();
+
+  $("#login-error").text("");
+
+  if (!email || !password) {
+    $("#login-error").text("Login failed, please try again");
+  } else {
+    const response = await fetch("/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      window.location.replace("/dashboard");
+    } else {
+      console.log("error");
+      $("#login-error").text("Login failed, please try again");
+    }
+  }
+};
+
 signUpForm.on("submit", handleSignUp);
+loginForm.on("submit", handleLogin);
