@@ -5,17 +5,17 @@ const renderDashboard = async (req, res) => {
     const { user, email } = req.session;
 
     const blogData = await Blog.findAll({
-      where: { user_id: user },
+      where: { user_id: user.id },
       include: [{ model: User }, { model: Comment }],
     });
-
-    console.log(blogData);
 
     const blogs = blogData.map((blog) => {
       const newBlog = blog.get({ plain: true });
 
       return newBlog;
     });
+
+    console.log(blogs[0].title);
 
     return res.render("dashboard", {
       layout: "main",

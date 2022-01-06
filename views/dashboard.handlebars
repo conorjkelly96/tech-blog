@@ -1,5 +1,9 @@
+{{#if isLoggedIn}}
+{{>private-navbar}}
+{{else}}
+{{>public-navbar}}
+{{/if}}
 
-{{> private-navbar}}
   <main>
     <div
       class="is-flex-direction-row is-flex-wrap-wrap has-text-centered"

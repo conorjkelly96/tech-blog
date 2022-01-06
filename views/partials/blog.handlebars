@@ -1,28 +1,22 @@
-{{#if isLoggedIn}}
-{{>private-navbar}}
-{{else}}
-{{>public-navbar}}
-{{/if}}
+<div>
+  <h2
+    class="subtitle is-flex-direction-row is-flex-wrap-wrap has-text-centered has-text-weight-semibold has-text-link"
+  >
+    My Posts
+  </h2>
+</div>
 
 <article
   class="media is-flex-direction-row is-flex-wrap-wrap is-justify-content-center my-6"
 >
-  <div>
-    <h2
-      class="subtitle is-flex-direction-row is-flex-wrap-wrap has-text-centered has-text-weight-semibold has-text-link"
-    >
-      My Posts
-    </h2>
-  </div>
-
   <div class="media-content">
     <div class="content card-content" id="content">
       <p>
-        <strong class="has-text-white">{{postObj.user.username}}</strong>
+        <strong class="has-text-white">{{blog.datavalues.email}}</strong>
         <br />
-        <strong class="has-text-white">{{postObj.title}}</strong>
+        <strong class="has-text-white">{{blog.title}}</strong>
         <br />
-        {{postObj.body}}
+        {{blog.body}}
         <br />
         <small><a class="card-links" id="edit-post">Edit</a>
           ·
