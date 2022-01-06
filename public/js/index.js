@@ -1,8 +1,6 @@
 const loginForm = $("#login-form");
 const signUpForm = $("#sign-up-form");
 
-console.log("connected");
-
 const getErrorsSignUp = ({ email, password, confirmPassword }) => {
   const errors = {};
 
@@ -48,32 +46,33 @@ const handleSignUp = async (event) => {
 
   console.log(email, password, confirmPassword);
 
-  //   const errors = getErrorsSignUp({
-  //     email,
-  //     password,
-  //     confirmPassword,
-  //   });
+  const errors = getErrorsSignUp({
+    email,
+    password,
+    confirmPassword,
+  });
 
-  //   renderErrorMessages(errors);
+  renderErrorMessages(errors);
 
-  //   if (!Object.keys(errors).length) {
-  //     const response = await fetch("/auth/sign-up", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         email,
-  //         password,
-  //       }),
-  //     });
+  if (!Object.keys(errors).length) {
+    const response = await fetch("/auth/sign-up", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
 
-  //     const data = await response.json();
+    const data = await response.json();
+    console.log(data);
 
-  //     if (data.success) {
-  //       console.log("success");
-  //     }
-  //   }
+    if (data.success) {
+      console.log("success");
+    }
+  }
 };
 
 signUpForm.on("submit", handleSignUp);
