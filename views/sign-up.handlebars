@@ -51,10 +51,11 @@
         Welcome to OpenSource - The ultimate software engineering community
       </h2>
 
-      <form id="sign-up-form">
-        <div
-          class="sign-up field is-flex-direction-row is-flex-wrap-wrap is-justify-content-center"
-        >
+      <form
+        id="sign-up-form"
+        class="is-flex-direction-row is-flex-wrap-wrap is-justify-content-center"
+      >
+        <div class="field">
           <p class="control has-icons-left has-icons-right">
             <input class="input" type="email" placeholder="Email" id="email" />
             <span class="icon is-small is-left">
@@ -62,6 +63,20 @@
             </span>
             <span class="icon is-small is-right">
               <i class="fas fa-check"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input
+              class="input"
+              type="text"
+              placeholder="Username"
+              id="username"
+            />
+            <span class="icon is-small is-left">
+              <i class="fa-solid fa-user"></i>
             </span>
           </p>
         </div>

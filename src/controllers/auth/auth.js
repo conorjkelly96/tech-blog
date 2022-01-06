@@ -4,13 +4,11 @@ const { getPayloadWithValidFieldsOnly } = require("../../helpers/utils");
 const signup = async (req, res) => {
   try {
     const payload = getPayloadWithValidFieldsOnly(
-      ["email", "password"],
+      ["email", "username", "password"],
       req.body
     );
 
-    console.log(payload);
-
-    if (Object.keys(payload).length !== 2) {
+    if (Object.keys(payload).length !== 3) {
       return res.status(400).json({
         success: false,
         error: "Please provide valid fields in post body",
