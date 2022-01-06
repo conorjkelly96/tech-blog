@@ -17,5 +17,6 @@ router.get("/edit-comment", renderEditComment);
 
 router.post("/sign-up", signup);
 router.post("/login", login);
+router.post("/logout", logout);
 
 module.exports = router;

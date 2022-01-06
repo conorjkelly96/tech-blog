@@ -79,7 +79,18 @@ const login = async (req, res) => {
   }
 };
 
+const logout = (req, res) => {
+  if (req.session.isLoggedIn) {
+    req.session.destroy(() => {
+      return res.status(200).json({ success: "Logout successful" });
+    });
+  } else {
+    return res.status(500).json({ error: "Failed to logout" });
+  }
+};
+
 module.exports = {
   signup,
   login,
+  logout,
 };
