@@ -1,4 +1,4 @@
-const { User } = require("../../models/User");
+const { User } = require("../../models");
 const { getPayloadWithValidFieldsOnly } = require("../../helpers/utils");
 
 const signup = async (req, res) => {
@@ -8,7 +8,9 @@ const signup = async (req, res) => {
       req.body
     );
 
-    if (Object.keys(payload).length !== 7) {
+    console.log(payload);
+
+    if (Object.keys(payload).length !== 2) {
       return res.status(400).json({
         success: false,
         error: "Please provide valid fields in post body",
