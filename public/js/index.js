@@ -106,7 +106,7 @@ const handleLogin = async (event) => {
     const data = await response.json();
 
     if (data.success) {
-      window.location.replace("/dashboard");
+      window.location.replace("/auth/dashboard");
     } else {
       console.log("error");
       $("#login-error").text("Login failed, please try again");
