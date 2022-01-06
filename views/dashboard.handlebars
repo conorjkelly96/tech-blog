@@ -10,37 +10,9 @@
       >
         Ready to write?
       </h2>
-      <button class="button is-link is-outlined">Create Post</button>
+      <button href="/views/create-blog.handlebars" class="button is-link is-outlined">Create Post</button>
     </div>
 
-    <article
-      class="media is-flex-direction-row is-flex-wrap-wrap is-justify-content-center my-6"
-    >
-      <div>
-        <h2
-          class="subtitle is-flex-direction-row is-flex-wrap-wrap has-text-centered has-text-weight-semibold has-text-link"
-        >
-          My Posts
-        </h2>
-      </div>
-
-      <div class="media-content">
-        <div class="content card-content" id="content">
-          <p>
-            <strong class="has-text-white">conorjkelly96</strong>
-            <br />
-            <strong class="has-text-white">Is Software Engineering Dead?</strong>
-            <br />
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta
-            eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque
-            mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.
-            <br />
-            <small><a class="card-links" id="edit-post">Edit</a>
-              ·
-              <a class="card-links" id="edit-post">Delete</a></small>
-          </p>
-        </div>
-      </div>
-    </article>
+    {{> blog}}
   </main>
   {{> footer}}

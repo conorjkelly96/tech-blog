@@ -2,25 +2,25 @@ const { Blog, Comment, User } = require("../../models");
 
 const renderDashboard = async (req, res) => {
   try {
-    // const { user_id } = req.session;
-    // console.log("Line 6", req.session);
-    // console.log("Line 7:", user_id);
+    const { user, email } = req.session;
 
-    // const blogData = await Blog.findAll({
-    //   where: { user_id: user_id },
-    //   include: [{ model: User }, { model: Comment }],
-    // });
+    const blogData = await Blog.findAll({
+      where: { user_id: user },
+      include: [{ model: User }, { model: Comment }],
+    });
 
-    // const blogs = blogData.map((blog) => {
-    //   const newBlog = blog.get({ plain: true });
+    console.log(blogData);
 
-    //   return newBlog;
-    // });
+    const blogs = blogData.map((blog) => {
+      const newBlog = blog.get({ plain: true });
+
+      return newBlog;
+    });
 
     return res.render("dashboard", {
-      // firstName,
-      // lastName,
-      // posts,
+      layout: "main",
+      email,
+      blogs,
     });
   } catch (error) {
     console.log(error.message);
