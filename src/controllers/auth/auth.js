@@ -42,6 +42,8 @@ const login = async (req, res) => {
 
     const user = await User.findOne({ where: { email: payload.email } });
 
+    console.log(user);
+
     if (!user) {
       return res.status(404).json({
         success: false,
@@ -58,16 +60,10 @@ const login = async (req, res) => {
       });
     }
 
-    const userInSession = {
-      id: user.get("id"),
-      email: user.get("email"),
-      firstName: user.get("first_name"),
-      lastName: user.get("last_name"),
-    };
-
     req.session.save(() => {
+      req.session.userId = user.id;
+      req.session.email = user.email;
       req.session.loggedIn = true;
-      req.session.user = userInSession;
 
       return res.json({ success: true, data: "Login successful" });
     });

@@ -1,10 +1,19 @@
 const bcrypt = require("bcrypt");
 
-const hashPassword = async (data) => {
-  const hashedPassword = await bcrypt.hash(data.password, 10);
-  data.password = hashedPassword;
+const beforeBulkCreate = async (users) => {
+  const promises = users.map((user) => {
+    return bcrypt.hash(user.password, 10);
+  });
 
-  return data;
+  const passwords = await Promise.all(promises);
+
+  passwords.forEach((password, index) => {
+    users[index].password = password;
+  });
 };
 
-module.exports = hashPassword;
+const beforeCreate = async (user) => {
+  user.password = await bcrypt.hash(user.password, 10);
+};
+
+module.exports = { beforeBulkCreate, beforeCreate };

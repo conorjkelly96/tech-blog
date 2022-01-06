@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const { Model, DataTypes } = require("sequelize");
 
 const connection = require("../config/connection");
-const hashPassword = require("../hooks/hooks");
+const hooks = require("../hooks/hooks");
 
 const schema = {
   id: {
@@ -40,9 +40,7 @@ const options = {
   freezeTableNames: true,
   underscored: true,
   modelName: "user",
-  hooks: {
-    beforeCreate: hashPassword,
-  },
+  hooks,
 };
 
 class User extends Model {

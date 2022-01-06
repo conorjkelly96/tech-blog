@@ -1,8 +1,6 @@
 const loginForm = $("#login-form");
 const signUpForm = $("#sign-up-form");
 
-console.log(loginForm);
-
 const getErrorsSignUp = ({ email, username, password, confirmPassword }) => {
   const errors = {};
 
@@ -106,7 +104,7 @@ const handleLogin = async (event) => {
     const data = await response.json();
 
     if (data.success) {
-      window.location.replace("/auth/dashboard");
+      window.location.replace("/dashboard");
     } else {
       console.log("error");
       $("#login-error").text("Login failed, please try again");

@@ -2,10 +2,11 @@ const { Blog, Comment, User } = require("../../models");
 
 const renderDashboard = async (req, res) => {
   try {
-    const { user, email } = req.session;
+    const { userId, email } = req.session;
+    console.log(req.session);
 
     const blogData = await Blog.findAll({
-      where: { user_id: user.id },
+      where: { user_id: userId },
       include: [{ model: User }, { model: Comment }],
     });
 
@@ -14,8 +15,6 @@ const renderDashboard = async (req, res) => {
 
       return newBlog;
     });
-
-    console.log(blogs[0].title);
 
     return res.render("dashboard", {
       layout: "main",

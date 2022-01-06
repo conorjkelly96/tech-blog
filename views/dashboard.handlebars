@@ -16,7 +16,9 @@
       </h2>
       <button href="/views/create-blog.handlebars" class="button is-link is-outlined">Create Post</button>
     </div>
-
+{{#each blogs}}
     {{> blog}}
+{{/each}}
+
   </main>
   {{> footer}}
