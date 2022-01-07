@@ -71,10 +71,10 @@ const handleSignUp = async (event) => {
       }),
     });
 
-    console.log(response);
+    console.log("RESPONSE", response);
 
     const data = await response.json();
-    console.log(data);
+    data;
 
     if (data.success) {
       console.log("success");
@@ -107,7 +107,7 @@ const handleLogin = async (event) => {
       window.location.replace("/dashboard");
     } else {
       console.log("error");
-      $("#login-error").text("Login failed, please try again");
+      alert("Login failed, please try again");
     }
   }
 };

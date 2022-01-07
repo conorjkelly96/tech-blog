@@ -42,7 +42,7 @@ const login = async (req, res) => {
 
     const user = await User.findOne({ where: { email: payload.email } });
 
-    console.log(user);
+    console.log("AUTH.js - USER:", user);
 
     if (!user) {
       return res.status(404).json({

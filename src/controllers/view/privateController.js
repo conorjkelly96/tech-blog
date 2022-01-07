@@ -3,7 +3,6 @@ const { Blog, Comment, User } = require("../../models");
 const renderDashboard = async (req, res) => {
   try {
     const { userId, email } = req.session;
-    console.log(req.session);
 
     const blogData = await Blog.findAll({
       where: { user_id: userId },
