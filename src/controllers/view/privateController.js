@@ -22,7 +22,7 @@ const renderDashboard = async (req, res) => {
     });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).json({ error: "Failed to render" });
+    return res.status(500).json({ error: `[ERR]: ${error.message}` });
   }
 };
 
@@ -35,25 +35,33 @@ const renderCreateBlog = async (req, res) => {
     res.status(500).json({ error: "Failed to render" });
   }
 };
-const renderEditBlog = (req, res) => {
+const renderEditBlog = async (req, res) => {
   try {
-    const { username } = req.session;
-    res.render("edit-blog", { layout: "main", username });
+    const { username, userId } = req.session;
+    const { id } = req.params;
+    console.log(req.session);
+    console.log(req.params);
+
+    const data = await Blog.findOne({ where: { id, user_id: userId } });
+
+    if (!data) {
+      return res.redirect("/dashboard");
+    }
+
+    const blog = data.get({ plain: true });
+
+    res.render("edit-post", { layout: "main", username, blog });
   } catch (error) {
     console.log(error.message);
-    return res
-      .status(500)
-      .json(`ERR: ${error.message} - failed to render Edit Blog`);
+    return res.status(500).json({ error: `[ERR]: ${error.message}` });
   }
 };
-const renderEditComment = (req, res) => {
+const renderEditComment = async (req, res) => {
   try {
     res.render("edit-comment");
   } catch (error) {
     console.log(error.message);
-    return res
-      .status(500)
-      .json(`ERR: ${error.message} - failed to render Edit Comment`);
+    return res.status(500).json({ error: `[ERR]: ${error.message}` });
   }
 };
 
