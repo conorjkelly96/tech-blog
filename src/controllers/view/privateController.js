@@ -28,9 +28,8 @@ const renderDashboard = async (req, res) => {
 
 const renderCreateBlog = async (req, res) => {
   try {
-    console.log(req.session);
     const { username } = req.session;
-    res.render("create-blog", { username });
+    res.render("create-blog", { layout: "main", username });
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ error: "Failed to render" });
@@ -38,7 +37,8 @@ const renderCreateBlog = async (req, res) => {
 };
 const renderEditBlog = (req, res) => {
   try {
-    res.render("edit-blog");
+    const { username } = req.session;
+    res.render("edit-blog", { layout: "main", username });
   } catch (error) {
     console.log(error.message);
     return res

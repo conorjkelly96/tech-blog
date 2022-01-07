@@ -10,8 +10,8 @@ const {
 const router = Router();
 
 router.get("/dashboard", renderDashboard);
-router.get("/create-blog", renderCreateBlog);
-router.get("/edit-post", renderEditBlog);
-router.get("/edit-comment", renderEditComment);
+router.get("/dashboard/create-blog", renderCreateBlog);
+router.get("/dashboard/edit-blog/:id", renderEditBlog);
+router.get("/comment/edit-comment/:id", renderEditComment);
 
 module.exports = router;
