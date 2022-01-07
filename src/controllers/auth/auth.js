@@ -60,10 +60,13 @@ const login = async (req, res) => {
       });
     }
 
+    console.log(user);
+
     req.session.save(() => {
       req.session.userId = user.id;
       req.session.email = user.email;
       req.session.loggedIn = true;
+      req.session.username = user.username;
 
       return res.json({ success: true, data: "Login successful" });
     });

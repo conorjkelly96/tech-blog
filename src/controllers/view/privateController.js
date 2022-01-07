@@ -28,12 +28,12 @@ const renderDashboard = async (req, res) => {
 
 const renderCreateBlog = async (req, res) => {
   try {
-    return res.render("create-blog");
+    console.log(req.session);
+    const { username } = req.session;
+    res.render("create-blog", { username });
   } catch (error) {
     console.log(error.message);
-    return res
-      .status(500)
-      .json(`ERR: ${error.message} - failed to render Create Blog`);
+    res.status(500).json({ error: "Failed to render" });
   }
 };
 const renderEditBlog = (req, res) => {
