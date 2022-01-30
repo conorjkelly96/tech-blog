@@ -7,9 +7,17 @@
         {{/if}}
     </header>
     <main class="" style="">
-        {{#each blogs}}
-        {{> homepage-blog}}
-        {{/each}}
+        <div>
+            <h2
+                class="subtitle is-flex-direction-row is-flex-wrap-wrap has-text-centered has-text-weight-semibold has-text-link">
+                OpenSource Articles
+            </h2>
+        </div>
+        <div>
+            {{#each blogs}}
+            {{> homepage-blog}}
+            {{/each}}
+        </div>
     </main>
     <!-- Footer -->
     <footer class="">
