@@ -1,1 +1,17 @@
-<h1>Homepage</h1>
+<body id="homePage" class="d-flex flex-column min-vh-100">
+    <header>
+        {{#if req.session.loggedIn}}
+        {{> private-navbar}}
+        {{else}}
+        {{> public-navbar}}
+        {{/if}}
+    </header>
+    <main class="" style="">
+        {{#each blogs}}
+        {{> homepage-blog}}
+        {{/each}}
+    </main>
+    <!-- Footer -->
+    <footer class="">
+    </footer>
+</body>

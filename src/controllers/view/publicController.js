@@ -24,10 +24,13 @@ const renderLogin = (req, res) => {
 
 const renderHomepage = async (req, res) => {
   try {
-    const blogs = await Blog.findAll();
-    console.log(blogs);
+    const blogsFromDB = await Blog.findAll();
 
-    res.render("homepage");
+    const blogs = blogsFromDB.map((blog) => {
+      return blog.get({ plain: true });
+    });
+
+    res.render("homepage", { blogs });
   } catch (error) {
     console.log(error.message);
     return res
