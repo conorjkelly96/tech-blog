@@ -23,6 +23,10 @@
   animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
+.homepage-oneliner{
+color: red;
+}
+
 .card-content {
   margin: 24px;
   border: rgb(128, 128, 128) 1px solid;
