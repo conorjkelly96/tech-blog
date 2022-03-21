@@ -26,22 +26,25 @@ const renderErrorMessages = (errors) => {
 const handlePostComment = async (event) => {
   event.preventDefault();
 
+  const url = window.location.href;
   const comment = $("#comment").val();
+  const blogId = url.substring(url.lastIndexOf("/") + 1);
 
-  const errors = getErrorsCreateBlog({
+  const errors = getErrorsPostComment({
     comment,
+    blogId,
   });
 
   renderErrorMessages(errors);
 
   if (!Object.keys(errors).length) {
     // make POST request to /api/
-    const response = await fetch("/api/blog/", {
+    const response = await fetch("/api/comment/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ portfolioName }),
+      body: JSON.stringify({ comment, blogId }),
     });
 
     console.log("RESPONSE", response);
@@ -55,4 +58,4 @@ const handlePostComment = async (event) => {
   }
 };
 
-createBlogForm.on("submit", handleCreateBlog);
+postCommentForm.on("submit", handlePostComment);

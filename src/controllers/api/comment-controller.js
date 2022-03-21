@@ -57,10 +57,17 @@ const getCommentById = async (req, res) => {
 const createComment = async (req, res) => {
   // create a new category
   try {
-    const { comment } = req.body;
+    const { comment, blogId } = req.body;
+
+    console.log(blogId, "blogId");
+    console.log(comment, "comment");
 
     if (comment) {
-      await Comment.create({ comment });
+      await Comment.create({
+        user_id: req.session.user.id,
+        text: comment,
+        blog_id: blogId,
+      });
       return res.json({ success: true, data: "Comment Category" });
     }
 

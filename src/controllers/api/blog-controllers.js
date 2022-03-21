@@ -47,8 +47,6 @@ const createBlog = async (req, res) => {
     const { blogTitle, blogContent } = req.body;
     const { userId } = req.session;
 
-    console.log(blogTitle, blogContent, userId);
-
     if (!userId) {
       return res.status(404).json({ error: "User is not logged in" });
     }
@@ -105,9 +103,9 @@ const updateBlogById = async (req, res) => {
 // DELETE blog post
 const deleteBlogById = async (req, res) => {
   try {
-    const { blogId } = req.params.id;
+    const { id } = req.params;
 
-    console.log("POST ID", blogId);
+    console.log("POST ID", id);
 
     await Blog.destroy({
       where: {

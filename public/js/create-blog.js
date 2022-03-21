@@ -38,8 +38,6 @@ const handleCreateBlog = async (event) => {
     blogContent,
   });
 
-  console.log(blogTitle, blogContent);
-
   renderErrorMessages(errors);
 
   if (!Object.keys(errors).length) {
