@@ -1,1 +1,22 @@
-<h1>Create Blog {{username}}</h1>
+{{#if isLoggedIn}}
+{{>private-navbar}}
+{{else}}
+{{>public-navbar}}
+{{/if}}
+<div class="container is-flex-direction-column is-flex-wrap-wrap is-justify-content-center">
+  <div class="field">
+    <label class="label">Blog Title</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="Blog Title" />
+    </div>
+  </div>
+  <div class="field">
+  <label class="label">Blog Content</label>
+  <div class="control">
+    <textarea class="textarea" placeholder="Textarea"></textarea>
+  </div>
+</div>
+<div class="buttons">
+  <button class="button is-success">Create Blog</button>
+</div>
+</div>
