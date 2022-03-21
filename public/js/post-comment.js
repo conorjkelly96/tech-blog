@@ -39,7 +39,7 @@ const handlePostComment = async (event) => {
 
   if (!Object.keys(errors).length) {
     // make POST request to /api/
-    const response = await fetch("/api/comment/", {
+    const response = await fetch("/api/comment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

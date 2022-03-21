@@ -59,12 +59,11 @@ const createComment = async (req, res) => {
   try {
     const { comment, blogId } = req.body;
 
-    console.log(blogId, "blogId");
-    console.log(comment, "comment");
+    const { userId } = req.session;
 
     if (comment) {
       await Comment.create({
-        user_id: req.session.user.id,
+        user_id: userId,
         text: comment,
         blog_id: blogId,
       });
