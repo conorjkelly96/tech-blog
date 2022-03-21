@@ -1,16 +1,20 @@
 <article
   class="media is-flex-direction-row is-flex-wrap-wrap is-justify-content-center my-6"
 >
-  <div class="media-content">
-    <div class="content card-content" id="content">
-      <p>
-        <strong class="">{{username}}</strong>
-        <br />
-        <strong class="">{{title}}</strong>
-        <br />
-        {{content}}
-        <br />
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title">
+        {{title}}
+
       </p>
+    </header>
+    <div class="card-content">
+      <div class="has-text-black">
+        {{content}}
+      </div>
     </div>
+    <footer class="card-footer">
+      <a href="/dashboard/edit-blog/{{id}}" class="card-footer-item">Edit</a>
+    </footer>
   </div>
 </article>

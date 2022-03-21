@@ -48,6 +48,8 @@ const renderEditBlog = async (req, res) => {
 
     const blog = data.get({ plain: true });
 
+    console.log(blog);
+
     res.render("edit-blog", { layout: "main", blog });
   } catch (error) {
     console.log(error.message);
