@@ -4,7 +4,7 @@
 {{>public-navbar}}
 {{/if}}
 
-<form class="container is-flex-direction-column is-flex-wrap-wrap is-justify-content-center" data-blog-id="{{id}}" id="edit-blog-form">
+<form class="container is-flex-direction-column is-flex-wrap-wrap is-justify-content-center" name="blog" data-blog-id="{{id}}" id="edit-blog-form">
   <div class="field">
     <label class="label">Blog Title</label>
     <div class="control">
@@ -19,7 +19,7 @@
 </div>
 <div class="buttons">
   <button class="button is-success" id="create-blog-btn">Edit Blog</button>
-  <button class="button is-danger" id="create-blog-btn">Delete Blog</button>
+  <button class="button is-danger" id="delete-blog-btn">Delete Blog</button>
 </div>
 </form>
     <script

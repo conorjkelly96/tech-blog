@@ -18,13 +18,25 @@
         <br />
         {{content}}
         <br />
-        <small><a
+        <small><button
             href="/dashboard/edit-blog/{{id}}"
             class="card-links"
             id={{id}}
-          >Edit</a>
+          >Edit</button>
           ·
           <a class="card-links" id="delete-blog">Delete</a></small>
+        <div class="buttons">
+          <button
+            class="button is-success"
+            id={{id}}
+            href="/dashboard/edit-blog/{{id}}"
+          >Edit Blog</button>
+          <button
+            data-blog-id="{{id}}"
+            class="button is-danger"
+            id="delete-blog-btn"
+          >Delete Blog</button>
+        </div>
       </p>
     </div>
   </div>
