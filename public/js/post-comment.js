@@ -1,21 +1,17 @@
-const createCommentForm = $("#post-comment-form");
+const postCommentForm = $("#post-comment-form");
 
-const getErrorsCreateBlog = ({ blogTitle, blogContent }) => {
+const getErrorsPostComment = ({ comment }) => {
   const errors = {};
 
-  if (!blogTitle) {
+  if (!comment) {
     errors.blogTitle = "Blog Title is required";
-  }
-
-  if (!blogContent) {
-    errors.blogContent = "Blog Content is required";
   }
 
   return errors;
 };
 
 const renderErrorMessages = (errors) => {
-  const fields = ["blog-title", "blog-content"];
+  const fields = ["comment"];
   fields.forEach((field) => {
     const errorDiv = $(`#${field}-error`);
 
@@ -27,28 +23,28 @@ const renderErrorMessages = (errors) => {
   });
 };
 
-const handleCreateBlog = async (event) => {
+const handlePostComment = async (event) => {
   event.preventDefault();
 
-  const blogTitle = $("#blog-title").val();
-  const blogContent = $("#blog-content").val();
+  const comment = $("#comment").val();
 
   const errors = getErrorsCreateBlog({
-    blogTitle,
-    blogContent,
+    comment,
   });
 
   renderErrorMessages(errors);
 
   if (!Object.keys(errors).length) {
-    // make POST request to /auth/login
-    const response = await fetch("/api/comment/", {
+    // make POST request to /api/
+    const response = await fetch("/api/blog/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ comment }),
+      body: JSON.stringify({ portfolioName }),
     });
+
+    const data = await response.json();
 
     console.log("RESPONSE", response);
 
@@ -61,4 +57,4 @@ const handleCreateBlog = async (event) => {
   }
 };
 
-createCommentForm.on("submit", handleCreateBlog);
+createBlogForm.on("submit", handleCreateBlog);
