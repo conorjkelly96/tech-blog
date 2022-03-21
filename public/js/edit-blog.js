@@ -1,4 +1,4 @@
-const createBlogForm = $("#create-blog-form");
+const editBlogForm = $("#edit-blog-form");
 
 const getErrorsCreateBlog = ({ blogTitle, blogContent }) => {
   const errors = {};
@@ -27,40 +27,33 @@ const renderErrorMessages = (errors) => {
   });
 };
 
-const handleCreateBlog = async (event) => {
+const handleEditBlog = async (event) => {
   event.preventDefault();
 
-  const blogTitle = $("#blog-title").val();
-  const blogContent = $("#blog-content").val();
+  const target = $(event.target);
+  const blogId = target.attr("data-blog-id");
 
-  const errors = getErrorsCreateBlog({
-    blogTitle,
-    blogContent,
-  });
+  const title = $("#blog-title").val();
+  const content = $("#blog-content").val();
 
-  renderErrorMessages(errors);
+  if (title && content) {
+    try {
+      const data = await makeRequest(`/api/blogs/${blogId}`, "PUT", {
+        title,
+        content,
+      });
 
-  if (!Object.keys(errors).length) {
-    // make POST request to /auth/login
-    const response = await fetch("/api/blog/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ portfolioName }),
-    });
-
-    const data = await response.json();
-
-    console.log("RESPONSE", response);
-
-    const data = await response.json();
-    console.log(data);
-
-    if (data.success) {
-      console.log("success");
+      if (data.success) {
+        window.location.replace(`/blogs/${blogId}`);
+      } else {
+        alert("Failed to update blog");
+      }
+    } catch (error) {
+      console.log("Failed to update blog");
     }
+  } else {
+    console.log("Failed to update blog");
   }
 };
 
-createBlogForm.on("submit", handleCreateBlog);
+editBlogForm.on("submit", handleEditBlog);
