@@ -105,17 +105,21 @@ const updateBlogById = async (req, res) => {
 // DELETE blog post
 const deleteBlogById = async (req, res) => {
   try {
+    const { id } = req.params;
+
+    console.log("POST ID", id);
+
     await Blog.destroy({
       where: {
-        id: req.params.id,
+        id,
+        userId: req.session.user.id,
       },
     });
-    return res.json({ success: true, data: "Deleted Blog" });
+
+    return res.json({ success: true });
   } catch (error) {
-    logError("DELETE Blog", error.message);
-    return res
-      .status(500)
-      .json({ success: false, error: "Failed to send response" });
+    console.log(`[ERROR]: Failed to delete blog | ${error.message}`);
+    return res.status(500).json({ success: false });
   }
 };
 

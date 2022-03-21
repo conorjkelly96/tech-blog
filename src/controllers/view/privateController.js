@@ -15,6 +15,8 @@ const renderDashboard = async (req, res) => {
       return newBlog;
     });
 
+    console.log(blogs);
+
     return res.render("dashboard", {
       layout: "main",
       email,

@@ -20,6 +20,8 @@ const handleDelete = async (event) => {
   const target = $(event.target);
   const blogId = target.attr("data-blog-id");
 
+  console.log(blogId);
+
   try {
     const data = await makeRequest(`/api/blog/${blogId}`, "DELETE");
     console.log(data);
