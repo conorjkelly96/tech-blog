@@ -1,14 +1,14 @@
 const editBlogForm = $("#edit-blog-form");
 
-const getErrorsCreateBlog = ({ blogTitle, blogContent }) => {
+const getErrorsEditBlog = ({ title, content }) => {
   const errors = {};
 
-  if (!blogTitle) {
-    errors.blogTitle = "Blog Title is required";
+  if (!title) {
+    errors.title = "Blog Title is required";
   }
 
-  if (!blogContent) {
-    errors.blogContent = "Blog Content is required";
+  if (!content) {
+    errors.content = "Blog Content is required";
   }
 
   return errors;
@@ -36,40 +36,54 @@ const handleEditBlog = async (event) => {
   const title = $("#blog-title").val();
   const content = $("#blog-content").val();
 
+  const errors = getErrorsEditBlog({
+    title,
+    content,
+  });
+
   if (title && content) {
     try {
-      const data = await makeRequest(`/api/blogs/${blogId}`, "PUT", {
-        title,
-        content,
-      });
+      if (!Object.keys(errors).length) {
+        // make PUT
+        const response = await fetch(`/api/blog/${blogId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title, content }),
+        });
 
-      if (data.success) {
-        window.location.replace(`/blogs/${blogId}`);
-      } else {
-        alert("Failed to update blog");
+        console.log("RESPONSE", response);
+
+        const data = await response.json();
+        console.log(data);
+
+        if (data.success) {
+          console.log("success");
+        }
       }
     } catch (error) {
-      console.log("Failed to update blog");
+      console.log(error.message);
     }
   } else {
     console.log("Failed to update blog");
   }
 };
 
-const handleDelete = async (event) => {
-  const target = $(event.target);
-  const blogId = target.attr("data-blog-id");
+// const handleDelete = async (event) => {
+//   const target = $(event.target);
+//   const blogId = target.attr("data-blog-id");
 
-  try {
-    const data = await makeRequest(`/api/blogs/${blogId}`, "DELETE");
-    if (data.success) {
-      window.location.replace("/dashboard");
-    } else {
-      console.log("Failed to delete blog");
-    }
-  } catch (error) {
-    console.log("Failed to delete blog");
-  }
-};
+//   try {
+//     const data = await makeRequest(`/api/blogs/${blogId}`, "DELETE");
+//     if (data.success) {
+//       window.location.replace("/dashboard");
+//     } else {
+//       console.log("Failed to delete blog");
+//     }
+//   } catch (error) {
+//     console.log("Failed to delete blog");
+//   }
+// };
 
 editBlogForm.on("submit", handleEditBlog);

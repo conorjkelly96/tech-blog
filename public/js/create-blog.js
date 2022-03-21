@@ -1,4 +1,4 @@
-const createCommentForm = $("#post-comment-form");
+const createBlogForm = $("#create-blog-form");
 
 const getErrorsCreateBlog = ({ blogTitle, blogContent }) => {
   const errors = {};
@@ -38,16 +38,18 @@ const handleCreateBlog = async (event) => {
     blogContent,
   });
 
+  console.log(blogTitle, blogContent);
+
   renderErrorMessages(errors);
 
   if (!Object.keys(errors).length) {
     // make POST request to /auth/login
-    const response = await fetch("/api/comment/", {
+    const response = await fetch("/api/blog", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ comment }),
+      body: JSON.stringify({ blogTitle, blogContent }),
     });
 
     console.log("RESPONSE", response);
@@ -56,9 +58,10 @@ const handleCreateBlog = async (event) => {
     console.log(data);
 
     if (data.success) {
+      window.location.reload();
       console.log("success");
     }
   }
 };
 
-createCommentForm.on("submit", handleCreateBlog);
+createBlogForm.on("submit", handleCreateBlog);

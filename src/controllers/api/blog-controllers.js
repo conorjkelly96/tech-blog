@@ -53,8 +53,12 @@ const createBlog = async (req, res) => {
       return res.status(404).json({ error: "User is not logged in" });
     }
 
-    if (blog) {
-      await Blog.create({ blogTitle, blogContent, userId: user_id });
+    if (blogTitle && blogContent && userId) {
+      await Blog.create({
+        title: blogTitle,
+        content: blogContent,
+        user_id: userId,
+      });
       return res.json({ success: true, data: "Created Blog" });
     }
 
@@ -73,11 +77,13 @@ const createBlog = async (req, res) => {
 const updateBlogById = async (req, res) => {
   try {
     const { id } = req.params;
-    const { blogTitle, blogContent } = req.body;
+    const { title, content } = req.body;
 
-    const blog = { blogTitle, blogContent };
+    const blog = { title, content };
 
-    if (!blogTitle || !blogContent) {
+    console.log(blog);
+
+    if (!title || !content) {
       return res.status(404).json({ error: "Unable to update post" });
     }
 
