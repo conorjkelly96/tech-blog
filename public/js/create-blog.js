@@ -40,25 +40,26 @@ const handleCreateBlog = async (event) => {
 
   renderErrorMessages(errors);
 
-    if (!Object.keys(errors).length) {
-      const response = await fetch("/api/blog/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            blogTitle,
-            blogContent,
-        }),
-      });
+  if (!Object.keys(errors).length) {
+    const response = await fetch("/api/blog", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        blogTitle,
+        blogContent,
+      }),
+    });
 
-      console.log("RESPONSE", response);
+    console.log("RESPONSE", response);
 
-      const data = await response.json();
-      data;
+    const data = await response.json();
+    console.log(data);
 
-  if (data.success) {
-    console.log("success");
+    if (data.success) {
+      console.log("success");
+    }
   }
 };
 
