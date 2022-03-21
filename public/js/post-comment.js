@@ -44,8 +44,6 @@ const handlePostComment = async (event) => {
       body: JSON.stringify({ portfolioName }),
     });
 
-    const data = await response.json();
-
     console.log("RESPONSE", response);
 
     const data = await response.json();

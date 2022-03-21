@@ -56,6 +56,17 @@ const renderEditBlog = async (req, res) => {
     res.status(500).json({ error: "Failed to render blog" });
   }
 };
+
+const renderPostComment = async (req, res) => {
+  try {
+    const { username } = req.session;
+    res.render("post-comment", { layout: "main", username });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: "Failed to render post comment" });
+  }
+};
+
 const renderEditComment = async (req, res) => {
   try {
     res.render("edit-comment");
@@ -70,4 +81,5 @@ module.exports = {
   renderCreateBlog,
   renderEditBlog,
   renderEditComment,
+  renderPostComment,
 };
