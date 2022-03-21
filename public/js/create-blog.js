@@ -41,16 +41,16 @@ const handleCreateBlog = async (event) => {
   renderErrorMessages(errors);
 
   if (!Object.keys(errors).length) {
-    const response = await fetch("/api/blog", {
+    // make POST request to /auth/login
+    const response = await fetch("/api/blog/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        blogTitle,
-        blogContent,
-      }),
+      body: JSON.stringify({ portfolioName }),
     });
+
+    const data = await response.json();
 
     console.log("RESPONSE", response);
 

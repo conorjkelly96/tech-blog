@@ -44,17 +44,17 @@ const getBlogsById = async (req, res) => {
 // CREATE blog post
 const createBlog = async (req, res) => {
   try {
-    const { blog } = req.body;
+    const { blogTitle, blogContent } = req.body;
     const { userId } = req.session;
 
-    console.log(blog, userId);
+    console.log(blogTitle, blogContent, userId);
 
     if (!userId) {
       return res.status(404).json({ error: "User is not logged in" });
     }
 
     if (blog) {
-      await Blog.create({ blogTitle, blogTitle, userId: user_id });
+      await Blog.create({ blogTitle, blogContent, userId: user_id });
       return res.json({ success: true, data: "Created Blog" });
     }
 
