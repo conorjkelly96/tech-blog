@@ -72,19 +72,27 @@ const createBlog = async (req, res) => {
 // UPDATE blog post
 const updateBlogById = async (req, res) => {
   try {
-    const { blog } = req.body;
-
     const { id } = req.params;
+    const { blogTitle, blogContent } = req.body;
 
-    if (id && blog) {
-      await Blog.update({ blog: blog }, { where: { id: id } });
-      return res.json({ success: true, data: `Updated Blog ${id}` });
+    const blog = { blogTitle, blogContent };
+
+    if (!blogTitle || !blogContent) {
+      return res.status(404).json({ error: "Unable to update post" });
     }
+
+    const [updatedPost] = await Blog.update(blog, { where: { id } });
+
+    if (!updatedPost) {
+      return res.status(404).json({ error: "Post does not exist" });
+    }
+
+    res.status(200).json({ success: "Successfully updated blog." });
   } catch (error) {
-    logError("GET Blog", error.message);
-    return res
-      .status(500)
-      .json({ success: false, error: "Failed to send response" });
+    console.log(`[ERROR]: ${error.message}`);
+    res.status(500).json({
+      error: "Failed to update blog.",
+    });
   }
 };
 

@@ -37,19 +37,21 @@ const renderCreateBlog = async (req, res) => {
 };
 const renderEditBlog = async (req, res) => {
   try {
-    console.log("edit blog");
-    const { username, userId } = req.session;
+    const { userId } = req.session;
     const { id } = req.params;
-    console.log(id);
+
     const data = await Blog.findOne({ where: { id, user_id: userId } });
+
     if (!data) {
       return res.redirect("/dashboard");
     }
+
     const blog = data.get({ plain: true });
-    res.render("edit-blog", { username, blog });
+
+    res.render("edit-blog", { layout: "main", blog });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).json({ error: `[ERR]: ${error.message}` });
+    res.status(500).json({ error: "Failed to render blog" });
   }
 };
 const renderEditComment = async (req, res) => {
